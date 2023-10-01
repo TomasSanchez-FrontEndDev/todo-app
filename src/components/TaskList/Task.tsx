@@ -8,9 +8,15 @@ interface TaskProps {
   isOpen: boolean;
   id: number;
   onClick: (taskId: number) => void;
+  onDelete: () => void;
 }
 
-const Task: React.FC<TaskProps> = ({ TaskImage, TaskText, isOpen }) => {
+const Task: React.FC<TaskProps> = ({
+  TaskImage,
+  TaskText,
+  isOpen,
+  onDelete,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const setVisibility = () => {
@@ -37,7 +43,7 @@ const Task: React.FC<TaskProps> = ({ TaskImage, TaskText, isOpen }) => {
             isVisible ? 'max-h-[300px]' : 'max-h-0'
           }`}
         >
-          <EditTask closeDroppdown={unSetVisibility} />
+          <EditTask closeDroppdown={unSetVisibility} onDelete={onDelete} />
         </div>
       </section>
     </>
@@ -66,8 +72,10 @@ export const Input: React.FC<InputProps> = ({ toggleVisibility, TaskText }) => {
 
 export const EditTask = ({
   closeDroppdown,
+  onDelete,
 }: {
   closeDroppdown: () => void;
+  onDelete: () => void;
 }) => {
   const [description, setDescription] = useState('');
   const [isEditing, setIsEditing] = useState(true);
@@ -102,6 +110,7 @@ export const EditTask = ({
           {buttonText}
         </button>
         <button
+          onClick={onDelete}
           type='button'
           className='bg-gray py-2 px-5 rounded-2xl text-2xl w-2/5 flex justify-center'
         >
