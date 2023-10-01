@@ -3,7 +3,7 @@ import React from 'react';
 
 const ProfileInfo = () => {
   return (
-    <div className='px-4 py-3 flex justify-between'>
+    <div className='p-4 flex justify-between'>
       <UserData />
       <TypeUser />
     </div>
@@ -28,7 +28,7 @@ const UserData = () => {
         />
       </div>
 
-      <div className='text-white font-semibold ml-3'>
+      <div className='text-white font-semibold ml-3 space-y-1'>
         <p>Name: {UserName}</p>
         <p>Status: {UserStatus}</p>
       </div>
